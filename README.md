@@ -32,3 +32,30 @@ Node version: 8.11.3 (Use n or nvm to manage node versions)
 - cds deploy --to sqlite:db/my-bookshop.db (Deploy to sqlite for a persistent database)
 - sqlite3 db/my-bookshop.db -cmd .dump (Show executed commands)
 - sqlite3 db/my-bookshop.db (Connect to the local environment database)
+
+For Deploy on a SCP environment:
+- npm add hdb (Add the SAP HANA driver as a dependency to the project)
+
+Remember to add the following settings to the package.json file:
+```
+"cds":{
+  "requires": {
+      "db": {
+      "kind": "hana",
+      "model": ["db","srv"]
+      }
+  }
+}
+```
+
+- Note: If your .cdsrc.json file contains a "target" entry, remove it or set it to: "target": "gen". This causes deployment files to be written to this folder. Otherwise, the deployment files would be written to the source folders.
+
+To create a service on the SCP trial:
+- cf create-service hanatrial hdi-shared my-bookshop-db-hdi-container
+
+To check the status of the created service:
+- cf service my-bookshop-db-hdi-container
+
+- cds build/all (Build application)
+- cf push -f gen/db (Push the database models to the SCP)
+- cf push -f gen/srv --random-route (Push services to the SCP)
