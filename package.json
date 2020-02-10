@@ -11,5 +11,20 @@
   },
   "scripts": {
     "start": "npx cds run"
+  },
+  "cds": {
+    "requires": {
+      "db": {
+        "kind": "sqlite",
+        "model": [
+          "db/",
+          "srv/",
+          "app/"
+        ],
+        "credentials": {
+          "database": "db/my-bookshop.db"
+        }
+      }
+    }
   }
 }

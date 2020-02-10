@@ -25,7 +25,10 @@ File / Folder | Purpose
 Learn more at https://cap.cloud.sap/docs/get-started/
 
 Node version: 8.11.3 (Use n or nvm to manage node versions)
-cds init <project name> (To create the project)
-npm i --save sqlite3 (Use on the project folder to install sqlite3 for local tests)
-npm i (Use on the project folder to install the dependencies)
-cds watch (To run the project)
+- cds init my-bookshop (To create the project)
+- npm i --save sqlite3 (Use on the project folder to install sqlite3 for local/persistent tests)
+- npm i (Use on the project folder to install the dependencies)
+- cds watch (To run the project locally)
+- cds deploy --to sqlite:db/my-bookshop.db (Deploy to sqlite for a persistent database)
+- sqlite3 db/my-bookshop.db -cmd .dump (Show executed commands)
+- sqlite3 db/my-bookshop.db (Connect to the local environment database)
